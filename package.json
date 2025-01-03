@@ -1,0 +1,30 @@
+{
+    "name": "log-center-sdk-nodejs",
+    "version": "1.0.0",
+    "description": "log center sdk for Node.JS",
+    "main": "bin/index.js",
+    "types": "bin/index.d.ts",
+    "scripts": {
+        "eslint": "eslint",
+        "build": "tsc"
+    },
+    "keywords": [
+        "log",
+        "logstash",
+        "logging",
+        "console"
+    ],
+    "author": "Leo Wu <leokwsw@gmail.com>",
+    "license": "ISC",
+    "dependencies": {
+        "@commitlint/cli": "^16.2.1",
+        "@commitlint/config-conventional": "^16.2.1",
+        "eslint": "^8.9.0",
+        "request-promise-native": "^1.0.9",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.7.2"
+    },
+    "devDependencies": {
+        "@types/request-promise-native": "^1.0.21"
+    }
+}
