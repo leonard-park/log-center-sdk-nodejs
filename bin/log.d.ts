@@ -4,7 +4,7 @@ export default class Log {
     version: string;
     type: string;
     level: string;
-    name: string;
+    name: string | null;
     message: string;
     trace: string | null;
     server_ip: string;

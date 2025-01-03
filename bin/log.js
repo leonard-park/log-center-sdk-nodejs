@@ -7,7 +7,7 @@ class Log {
         this.version = "";
         this.type = "";
         this.level = "";
-        this.name = "";
+        this.name = null;
         this.message = "";
         this.trace = null;
         this.server_ip = "";

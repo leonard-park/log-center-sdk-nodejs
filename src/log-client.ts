@@ -1,4 +1,4 @@
-import { hostname, networkInterfaces } from "os";
+import {hostname, networkInterfaces} from "os";
 
 export default class LogClient {
   public readonly url: string = "https://logcenter.leonardpark.dev/logs";

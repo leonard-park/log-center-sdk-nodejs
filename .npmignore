@@ -4,3 +4,5 @@
 .eslintrc.js
 commitlint.config.js
 tsconfig.json
+example
+tslint.json

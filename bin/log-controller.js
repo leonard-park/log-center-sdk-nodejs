@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LogController = void 0;
 const console_1 = require("console");
 const log_client_1 = __importDefault(require("./log-client"));
-const rp = require("request-promise-native");
 class LogController {
     constructor(application, environment, version) {
         this.application = application;
@@ -45,7 +44,7 @@ class LogController {
     }
     async sendLog(level, message, trace = null) {
         var _a;
-        return this.requestSendLog({
+        const logData = {
             application: this.application,
             environment: this.environment,
             version: this.version,
@@ -56,14 +55,16 @@ class LogController {
             trace,
             server_ip: (_a = this.client.serverIp) !== null && _a !== void 0 ? _a : "",
             server_name: this.client.serverName,
-        });
+        };
+        await this.requestSendLog(logData);
     }
     async requestSendLog(data) {
-        return rp({
+        await fetch(this.client.url, {
             method: "POST",
-            url: this.client.url,
-            json: true,
-            body: data,
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            }
         });
     }
 }

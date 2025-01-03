@@ -3,6 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LogClient = exports.LogController = void 0;
 exports.setupLogController = setupLogController;
 let isSetupComplete = false;
+const notInitializedMessage = (...args) => {
+    throw new Error("The library has not been initialized. You must call `setupLogController(application, environment, version)` before using any console methods.");
+};
+global.console = {
+    log: (...args) => notInitializedMessage(...args),
+    error: (...args) => notInitializedMessage(...args),
+    warn: (...args) => notInitializedMessage(...args),
+    info: (...args) => notInitializedMessage(...args),
+    debug: (...args) => notInitializedMessage(...args),
+};
 function setupLogController(application, environment, version) {
     const { LogController } = require("./log-controller"); // Lazy-load to avoid circular dependencies
     const logController = new LogController(application, environment, version);
@@ -24,17 +34,18 @@ function enforceSetup() {
 }
 // Wrap exported functionality with enforcement
 function wrapWithEnforcement(fn) {
-    return ((...args) => {
-        enforceSetup();
-        return fn(...args);
+    return new Proxy(fn, {
+        get(targetObj, property) {
+            enforceSetup();
+            return Reflect.get(targetObj, property);
+        },
     });
 }
 // Export functionality with runtime checks
 exports.LogController = wrapWithEnforcement(require("./log-controller").LogController);
 exports.LogClient = wrapWithEnforcement(require("./log-client").default);
-// Self-invoking to enforce initialization
-(() => {
+setTimeout(() => {
     if (!isSetupComplete) {
-        console.warn("Warning: `setupLogController` has not been called. Please ensure to initialize the library before using it.");
+        console.warn("Warning: `setupLogController` has not been called. The SDK will throw errors for any `console` calls until it is initialized.");
     }
-})();
+}, 0);

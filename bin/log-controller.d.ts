@@ -1,10 +1,11 @@
 import LogClient from "./log-client";
+import Log from "./log";
 export declare class LogController {
     application: string;
     environment: string;
     version: string;
-    private console;
     protected client: LogClient;
+    private console;
     constructor(application: string, environment: string, version: string);
     log(...args: unknown[]): Promise<void>;
     error(...args: unknown[]): Promise<void>;
@@ -12,7 +13,5 @@ export declare class LogController {
     info(...args: unknown[]): Promise<void>;
     debug(...args: unknown[]): Promise<void>;
     protected sendLog(level: string, message: string, trace?: string | null): Promise<void>;
-    protected requestSendLog(data: {
-        [key: string]: string | null;
-    }): Promise<void>;
+    protected requestSendLog(data: Log): Promise<void>;
 }

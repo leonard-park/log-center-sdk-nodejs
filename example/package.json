@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-ts": "ts-node src/index.ts",
+    "test-js": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "log-center-sdk-nodejs": "file:.."
+    "log-center-sdk-nodejs": "github:leonard-park/log-center-sdk-nodejs"
   }
 }

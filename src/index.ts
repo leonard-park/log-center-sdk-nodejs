@@ -1,5 +1,19 @@
 let isSetupComplete = false;
 
+const notInitializedMessage = (...args: unknown[]): any => {
+  throw new Error(
+    "The library has not been initialized. You must call `setupLogController(application, environment, version)` before using any console methods."
+  );
+};
+
+global.console = {
+  log: (...args: unknown[]) => notInitializedMessage(...args),
+  error: (...args: unknown[]) => notInitializedMessage(...args),
+  warn: (...args: unknown[]) => notInitializedMessage(...args),
+  info: (...args: unknown[]) => notInitializedMessage(...args),
+  debug: (...args: unknown[]) => notInitializedMessage(...args),
+} as Console;
+
 export function setupLogController(application: string, environment: string, version: string): void {
   const {LogController} = require("./log-controller"); // Lazy-load to avoid circular dependencies
 
@@ -15,7 +29,6 @@ export function setupLogController(application: string, environment: string, ver
   } as Console;
 
   isSetupComplete = true; // Mark setup as complete
-    console.log("Starting log");
 }
 
 // Function to enforce setup at runtime
@@ -29,21 +42,22 @@ function enforceSetup(): void {
 
 // Wrap exported functionality with enforcement
 function wrapWithEnforcement<T extends (...args: any[]) => any>(fn: T): T {
-  return ((...args: any[]) => {
-    enforceSetup();
-    return fn(...args);
-  }) as T;
+  return new Proxy(fn, {
+    get(targetObj, property) {
+      enforceSetup();
+      return Reflect.get(targetObj, property);
+    },
+  });
 }
 
 // Export functionality with runtime checks
 export const LogController = wrapWithEnforcement(require("./log-controller").LogController);
 export const LogClient = wrapWithEnforcement(require("./log-client").default);
 
-// Self-invoking to enforce initialization
-(() => {
+setTimeout(() => {
   if (!isSetupComplete) {
     console.warn(
-      "Warning: `setupLogController` has not been called. Please ensure to initialize the library before using it."
+      "Warning: `setupLogController` has not been called. The SDK will throw errors for any `console` calls until it is initialized."
     );
   }
-})();
+}, 0);
