@@ -12,10 +12,10 @@ overrides the global `console` object to send logs directly to your Log Center.
 
 ## Installation
 
-### From NPM
+### From GitHub
 
 ```bash
-npm install log-center-sdk-nodejs
+npm install github:leonard-park/log-center-sdk-nodejs
 ```
 
 ### From Local Directory
