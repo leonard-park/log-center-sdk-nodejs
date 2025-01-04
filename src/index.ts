@@ -5,14 +5,24 @@ const notInitializedMessage = (...args: unknown[]): any => {
     "The library has not been initialized. You must call `setupLogController(application, environment, version)` before using any console methods."
   );
 };
+const overrideGlobalConsole = () => {
+  global.console = {
+    log: (...args: unknown[]) => notInitializedMessage(...args),
+    error: (...args: unknown[]) => notInitializedMessage(...args),
+    warn: (...args: unknown[]) => notInitializedMessage(...args),
+    info: (...args: unknown[]) => notInitializedMessage(...args),
+    debug: (...args: unknown[]) => notInitializedMessage(...args),
+  } as Console;
+};
 
-global.console = {
-  log: (...args: unknown[]) => notInitializedMessage(...args),
-  error: (...args: unknown[]) => notInitializedMessage(...args),
-  warn: (...args: unknown[]) => notInitializedMessage(...args),
-  info: (...args: unknown[]) => notInitializedMessage(...args),
-  debug: (...args: unknown[]) => notInitializedMessage(...args),
-} as Console;
+// Replace global console immediately
+if (typeof window === "undefined") {
+  // Running in Node.js
+  overrideGlobalConsole();
+} else {
+  // Running in the browser
+  console.warn("SDK is designed for server-side use. Client-side logging is limited.");
+}
 
 export function setupLogController(application: string, environment: string, version: string): void {
   const {LogController} = require("./log-controller"); // Lazy-load to avoid circular dependencies
