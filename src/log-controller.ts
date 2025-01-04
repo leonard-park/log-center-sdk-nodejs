@@ -1,4 +1,3 @@
-import {Console} from "console";
 import LogClient from "./log-client";
 import Log from "./log";
 
@@ -7,17 +6,11 @@ export class LogController {
   environment: string;
   version: string;
   protected client: LogClient;
-  private console: Console;
 
   constructor(application: string, environment: string, version: string) {
     this.application = application;
     this.environment = environment;
     this.version = version;
-
-    this.console = new Console({
-      stdout: process.stdout,
-      stderr: process.stderr,
-    });
 
     this.client = new LogClient(); // Initialize the log client
   }
@@ -25,7 +18,7 @@ export class LogController {
   async log(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      this.console.log(message);
+      console.log(message);
       await this.sendLog("log", message);
     }
   }
@@ -33,7 +26,7 @@ export class LogController {
   async error(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      this.console.error(message);
+      console.error(message);
       await this.sendLog("error", message);
     }
   }
@@ -41,7 +34,7 @@ export class LogController {
   async warn(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      this.console.warn(message);
+      console.warn(message);
       await this.sendLog("warn", message);
     }
   }
@@ -49,7 +42,7 @@ export class LogController {
   async info(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      this.console.info(message);
+      console.info(message);
       await this.sendLog("info", message);
     }
   }
@@ -57,7 +50,7 @@ export class LogController {
   async debug(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      this.console.debug(message);
+      console.debug(message);
       await this.sendLog("debug", message);
     }
   }

@@ -5,7 +5,6 @@ export declare class LogController {
     environment: string;
     version: string;
     protected client: LogClient;
-    private console;
     constructor(application: string, environment: string, version: string);
     log(...args: unknown[]): Promise<void>;
     error(...args: unknown[]): Promise<void>;

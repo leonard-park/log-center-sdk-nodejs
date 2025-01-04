@@ -4,51 +4,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LogController = void 0;
-const console_1 = require("console");
 const log_client_1 = __importDefault(require("./log-client"));
 class LogController {
     constructor(application, environment, version) {
         this.application = application;
         this.environment = environment;
         this.version = version;
-        this.console = new console_1.Console({
-            stdout: process.stdout,
-            stderr: process.stderr,
-        });
         this.client = new log_client_1.default(); // Initialize the log client
     }
     async log(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            this.console.log(message);
+            console.log(message);
             await this.sendLog("log", message);
         }
     }
     async error(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            this.console.error(message);
+            console.error(message);
             await this.sendLog("error", message);
         }
     }
     async warn(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            this.console.warn(message);
+            console.warn(message);
             await this.sendLog("warn", message);
         }
     }
     async info(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            this.console.info(message);
+            console.info(message);
             await this.sendLog("info", message);
         }
     }
     async debug(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            this.console.debug(message);
+            console.debug(message);
             await this.sendLog("debug", message);
         }
     }
