@@ -1,7 +1,7 @@
 import LogClient from "./log-client";
 import Log from "./log";
 
-export class LogController {
+export default class LogController {
   application: string;
   environment: string;
   version: string;

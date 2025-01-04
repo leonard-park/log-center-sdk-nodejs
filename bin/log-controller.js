@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogController = void 0;
 const log_client_1 = __importDefault(require("./log-client"));
 class LogController {
     constructor(application, environment, version) {
@@ -73,4 +72,4 @@ class LogController {
         });
     }
 }
-exports.LogController = LogController;
+exports.default = LogController;
