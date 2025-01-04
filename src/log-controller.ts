@@ -18,7 +18,6 @@ export default class LogController {
   async log(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      console.log(message);
       await this.sendLog("log", message);
     }
   }
@@ -26,7 +25,6 @@ export default class LogController {
   async error(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      console.error(message);
       await this.sendLog("error", message);
     }
   }
@@ -34,7 +32,6 @@ export default class LogController {
   async warn(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      console.warn(message);
       await this.sendLog("warn", message);
     }
   }
@@ -42,7 +39,6 @@ export default class LogController {
   async info(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      console.info(message);
       await this.sendLog("info", message);
     }
   }
@@ -50,7 +46,6 @@ export default class LogController {
   async debug(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
     if (typeof window !== "undefined") {
-      console.debug(message);
       await this.sendLog("debug", message);
     }
   }

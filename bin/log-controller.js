@@ -14,35 +14,30 @@ class LogController {
     async log(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            console.log(message);
             await this.sendLog("log", message);
         }
     }
     async error(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            console.error(message);
             await this.sendLog("error", message);
         }
     }
     async warn(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            console.warn(message);
             await this.sendLog("warn", message);
         }
     }
     async info(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            console.info(message);
             await this.sendLog("info", message);
         }
     }
     async debug(...args) {
         const message = args.map(String).join(" ");
         if (typeof window !== "undefined") {
-            console.debug(message);
             await this.sendLog("debug", message);
         }
     }
