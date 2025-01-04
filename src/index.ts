@@ -66,8 +66,10 @@ export const LogClient = wrapWithEnforcement(require("./log-client").default);
 
 setTimeout(() => {
   if (!isSetupComplete) {
-    console.warn(
-      "Warning: `setupLogController` has not been called. The SDK will throw errors for any `console` calls until it is initialized."
-    );
+    if (typeof window !== "undefined") {
+      console.warn(
+        "Warning: `setupLogController` has not been called. The SDK will throw errors for any `console` calls until it is initialized."
+      );
+    }
   }
 }, 0);
