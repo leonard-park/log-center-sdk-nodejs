@@ -24,32 +24,42 @@ export class LogController {
 
   async log(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
-    this.console.log(message);
-    await this.sendLog("log", message);
+    if (typeof window !== "undefined") {
+      this.console.log(message);
+      await this.sendLog("log", message);
+    }
   }
 
   async error(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
-    this.console.error(message);
-    await this.sendLog("error", message);
+    if (typeof window !== "undefined") {
+      this.console.error(message);
+      await this.sendLog("error", message);
+    }
   }
 
   async warn(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
-    this.console.warn(message);
-    await this.sendLog("warn", message);
+    if (typeof window !== "undefined") {
+      this.console.warn(message);
+      await this.sendLog("warn", message);
+    }
   }
 
   async info(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
-    this.console.info(message);
-    await this.sendLog("info", message);
+    if (typeof window !== "undefined") {
+      this.console.info(message);
+      await this.sendLog("info", message);
+    }
   }
 
   async debug(...args: unknown[]): Promise<void> {
     const message = args.map(String).join(" ");
-    this.console.debug(message);
-    await this.sendLog("debug", message);
+    if (typeof window !== "undefined") {
+      this.console.debug(message);
+      await this.sendLog("debug", message);
+    }
   }
 
   protected async sendLog(
