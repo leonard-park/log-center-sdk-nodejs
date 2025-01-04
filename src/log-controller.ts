@@ -15,24 +15,24 @@ export default class LogController {
     this.client = new LogClient(); // Initialize the log client
   }
 
-  async log(...args: unknown[]): Promise<void> {
-    await this.sendLog("log", JSON.stringify(args, null, 4));
+  async log(data: {[key: string]:any}): Promise<void> {
+    await this.sendLog("log", JSON.stringify(data, null, 4));
   }
 
-  async error(...args: unknown[]): Promise<void> {
-    await this.sendLog("error", JSON.stringify(args, null, 4));
+  async error(data: {[key: string]:any}): Promise<void> {
+    await this.sendLog("error", JSON.stringify(data, null, 4));
   }
 
-  async warn(...args: unknown[]): Promise<void> {
-    await this.sendLog("warn", JSON.stringify(args, null, 4));
+  async warn(data: {[key: string]:any}): Promise<void> {
+    await this.sendLog("warn", JSON.stringify(data, null, 4));
   }
 
-  async info(...args: unknown[]): Promise<void> {
-    await this.sendLog("info", JSON.stringify(args, null, 4));
+  async info(data: {[key: string]:any}): Promise<void> {
+    await this.sendLog("info", JSON.stringify(data, null, 4));
   }
 
-  async debug(...args: unknown[]): Promise<void> {
-    await this.sendLog("debug", JSON.stringify(args, null, 4));
+  async debug(data: {[key: string]:any}): Promise<void> {
+    await this.sendLog("debug", JSON.stringify(data, null, 4));
   }
 
   protected async sendLog(
