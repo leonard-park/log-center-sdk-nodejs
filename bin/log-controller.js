@@ -12,34 +12,19 @@ class LogController {
         this.client = new log_client_1.default(); // Initialize the log client
     }
     async log(...args) {
-        const message = args.map(String).join(" ");
-        if (typeof window !== "undefined") {
-            await this.sendLog("log", message);
-        }
+        await this.sendLog("log", JSON.stringify(args));
     }
     async error(...args) {
-        const message = args.map(String).join(" ");
-        if (typeof window !== "undefined") {
-            await this.sendLog("error", message);
-        }
+        await this.sendLog("error", JSON.stringify(args));
     }
     async warn(...args) {
-        const message = args.map(String).join(" ");
-        if (typeof window !== "undefined") {
-            await this.sendLog("warn", message);
-        }
+        await this.sendLog("warn", JSON.stringify(args));
     }
     async info(...args) {
-        const message = args.map(String).join(" ");
-        if (typeof window !== "undefined") {
-            await this.sendLog("info", message);
-        }
+        await this.sendLog("info", JSON.stringify(args));
     }
     async debug(...args) {
-        const message = args.map(String).join(" ");
-        if (typeof window !== "undefined") {
-            await this.sendLog("debug", message);
-        }
+        await this.sendLog("debug", JSON.stringify(args));
     }
     async sendLog(level, message, trace = null) {
         var _a;

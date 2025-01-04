@@ -16,28 +16,23 @@ export default class LogController {
   }
 
   async log(...args: unknown[]): Promise<void> {
-    const message = args.map(String).join(" ");
-    await this.sendLog("log", message);
+    await this.sendLog("log", JSON.stringify(args));
   }
 
   async error(...args: unknown[]): Promise<void> {
-    const message = args.map(String).join(" ");
-    await this.sendLog("error", message);
+    await this.sendLog("error", JSON.stringify(args));
   }
 
   async warn(...args: unknown[]): Promise<void> {
-    const message = args.map(String).join(" ");
-    await this.sendLog("warn", message);
+    await this.sendLog("warn", JSON.stringify(args));
   }
 
   async info(...args: unknown[]): Promise<void> {
-    const message = args.map(String).join(" ");
-    await this.sendLog("info", message);
+    await this.sendLog("info", JSON.stringify(args));
   }
 
   async debug(...args: unknown[]): Promise<void> {
-    const message = args.map(String).join(" ");
-    await this.sendLog("debug", message);
+    await this.sendLog("debug", JSON.stringify(args));
   }
 
   protected async sendLog(
