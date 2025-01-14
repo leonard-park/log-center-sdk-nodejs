@@ -5,7 +5,9 @@ export default class Log {
     type: string;
     level: string;
     name: string | null;
-    message: string;
+    message: {
+        [key: string]: any;
+    };
     trace: string | null;
     server_ip: string;
     server_name: string;
