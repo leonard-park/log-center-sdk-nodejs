@@ -1,5 +1,5 @@
 import Log from "./log";
-import {hostname, networkInterfaces} from "node:os";
+import {hostname, networkInterfaces} from "os";
 
 export default class LogController {
   application: string;
