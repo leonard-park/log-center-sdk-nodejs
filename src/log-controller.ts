@@ -31,28 +31,28 @@ export default class LogController {
   }
 
   async log(data: { [key: string]: any }): Promise<void> {
-    await this.sendLog("log", JSON.stringify(data, null, 2));
+    await this.sendLog("log", data);
   }
 
   async error(data: { [key: string]: any }): Promise<void> {
-    await this.sendLog("error", JSON.stringify(data, null, 2));
+    await this.sendLog("error", data);
   }
 
   async warn(data: { [key: string]: any }): Promise<void> {
-    await this.sendLog("warn", JSON.stringify(data, null, 2));
+    await this.sendLog("warn", data);
   }
 
   async info(data: { [key: string]: any }): Promise<void> {
-    await this.sendLog("info", JSON.stringify(data, null, 2));
+    await this.sendLog("info", data);
   }
 
   async debug(data: { [key: string]: any }): Promise<void> {
-    await this.sendLog("debug", JSON.stringify(data, null, 2));
+    await this.sendLog("debug", data);
   }
 
   protected async sendLog(
     level: string,
-    message: string,
+    message: { [key: string]: any },
     trace: string | null = null
   ) {
     const logData: Log = {
