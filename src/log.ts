@@ -5,7 +5,7 @@ export default class Log {
   type: string = ""
   level: string = ""
   name: string | null = null
-  message:  { [key: string]: any } = {}
+  message:  string = ""
   trace: string | null = null
   server_ip: string = ""
   server_name: string = ""
