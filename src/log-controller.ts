@@ -71,12 +71,12 @@ export default class LogController {
   }
 
   protected async requestSendLog(data: Log): Promise<void> {
-    await fetch(this.url, {
+    fetch(this.url, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       }
-    })
+    }).catch((err) => {})
   }
 }
