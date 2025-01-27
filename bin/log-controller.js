@@ -48,13 +48,13 @@ class LogController {
         await this.requestSendLog(logData);
     }
     async requestSendLog(data) {
-        await fetch(this.url, {
+        fetch(this.url, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
             }
-        });
+        }).catch((err) => { });
     }
 }
 exports.default = LogController;
