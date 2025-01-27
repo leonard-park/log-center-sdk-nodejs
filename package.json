@@ -1,6 +1,6 @@
 {
   "name": "log-center-sdk-nodejs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "log center sdk for Node.JS",
   "main": "./bin/index.js",
   "types": "./bin/index.d.ts",
